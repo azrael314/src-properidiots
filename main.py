@@ -20,7 +20,7 @@ intents.presences = True
 load_dotenv()
 TOKEN = (' REMOVED ')
 
-bot = commands.Bot(command_prefix="-", intents = intents)
+bot = commands.Bot(command_prefix="#", intents = intents, help_command=None)
 
 
 
@@ -122,9 +122,19 @@ async def on_member_join(user: discord.Member):
 
 # General commands
 
+
 @bot.command(brief="Checks if the bot's online", description="This command checks if the bot's online. Aliases: c", aliases=["c"])
 async def check(ctx):
   await ctx.send(ch)
+
+
+@bot.command()
+async def help(ctx):
+    embedVar = discord.Embed(title="Help;", color=0x2C5ED1)
+    embedVar.add_field(name="General", value="check", inline=False)
+    embedVar.add_field(name="Moderation", value="config, mute, unmute, kick, ban, unban, purge, restart", inline=False)
+    embedVar.add_field(name="Developer", value="edit_db, view_db", inline=False)
+    embed = await ctx.send(embed=embedVar)
 
 
 
